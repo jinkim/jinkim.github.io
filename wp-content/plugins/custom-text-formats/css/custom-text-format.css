@@ -1,0 +1,9 @@
+.components-popover__content .is-active .dashicon:before {
+    background: #111 !important;
+    color: #fff !important;    
+}
+
+.ingress {
+	font-weight: bold;
+	font-size: 1.1em;
+}

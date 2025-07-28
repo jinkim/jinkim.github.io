@@ -1,0 +1,518 @@
+/*
+Theme Name: Ferrous Processing & Trading
+Theme URI: https://fpt1.com/wp-content/themes/ferrous/
+Author: BasedOn (Jin Kim)
+Author URI: https://basedon.com
+Description: Theme for Ferrous Processing and Trading corporate website
+Requires at least: 6.7
+Tested up to: 6.8
+Requires PHP: 7.2
+Version: 0.9.4
+License: Privately Licensed to Ferrous Processing & Trading
+Text Domain: fpt
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
+*/
+/*
+ * Baseline styles
+ */
+:root {
+  --wp--preset--bg-color--success: lightgreen;
+  --wp--preset--bg-color--notice: lightblue;
+  --wp--preset--bg-color--warning: lightyellow;
+  --wp--preset--bg-color--error: --wp--preset--color--ferrous-red;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+a {
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.1em;
+}
+
+/* Focus styles */
+:where(.wp-site-blocks *:focus) {
+  outline-width: 2px;
+  outline-style: solid;
+}
+
+/* Increase the bottom margin on submenus, so that the outline is visible. */
+.wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
+  margin-bottom: 3px;
+}
+
+/* Increase the outline offset on the parent menu items, so that the outline does not touch the text. */
+.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content {
+  outline-offset: 4px;
+}
+
+/* Remove outline offset from the submenus, otherwise the outline is visible outside the submenu container. */
+.wp-block-navigation .wp-block-navigation-item ul.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+  outline-offset: 0;
+}
+
+/*
+ * Progressive enhancement to reduce widows and orphans
+ * https://github.com/WordPress/gutenberg/issues/55190
+ */
+h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
+  text-wrap: pretty;
+}
+
+.is-style-text-eyebrow + h1,
+.is-style-text-eyebrow + h2,
+.is-style-text-eyebrow + h3,
+.is-style-text-eyebrow + h4,
+.is-style-text-eyebrow + h5,
+.is-style-text-eyebrow + h6 {
+  margin-top: 1.5rem;
+}
+
+.is-style-text-eyebrow:has(+ p) {
+  margin-bottom: 0;
+}
+
+.is-style-text-eyebrow + p {
+  margin-top: 0rem;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  width: 100%;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-block-start: 2rem;
+  padding-block-end: 2rem;
+  transition-property: padding-block-start, padding-block-end, backdrop-filter, background-color, box-shadow, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  color: var(--wp--preset--color--contrast);
+  background-color: white;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.block-editor-block-list__layout .site-header {
+  position: relative;
+  padding-block-start: 2rem;
+  padding-block-end: 2rem;
+}
+
+.site-header .inner {
+  gap: 1rem 4rem;
+}
+
+.site-header .id-container {
+  display: block;
+  color: var(--wp--preset--color--ferrous-blue);
+  line-height: 0;
+}
+
+.site-header .id-container a {
+  display: block;
+  width: 200px;
+  line-height: 0;
+  text-decoration: none;
+  transition-property: width, height;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.site-header .id-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-header.is-reversed {
+  color: white;
+  background-color: transparent;
+}
+
+.site-header.is-reversed .id-container {
+  color: white;
+}
+
+.site-header.is-compact {
+  padding-block-start: 0.75rem;
+  padding-block-end: 0.75rem;
+  color: var(--wp--preset--color--contrast);
+  background-color: color-mix(in srgb, var(--wp--preset--color--base) 50%, transparent);
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 1px 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.site-header.is-compact .id-container {
+  color: var(--wp--preset--color--ferrous-blue);
+}
+
+.site-header.is-compact .id-container a {
+  width: 126px;
+}
+
+.site-header .main-navigation.is-responsive .is-menu-open,
+.site-header .main-navigation.is-responsive .has-modal-open {
+  overflow-y: auto;
+  background-color: white;
+  height: 100vh;
+}
+
+.site-main {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.site-footer {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.site-footer :any-link {
+  text-decoration: none;
+  color: white;
+}
+
+.site-footer :any-link:hover {
+  text-decoration: underline;
+}
+
+.site-footer-outer-container {
+  padding-block-start: 10rem;
+  padding-block-end: 10rem;
+  font-size: var(--wp--preset--font-size--small);
+  line-height: 1.2;
+  color: white;
+  background-color: var(--wp--preset--color--ferrous-blue);
+}
+
+.site-footer-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  align-content: stretch;
+  gap: 3rem;
+}
+
+.site-footer-main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem 6rem;
+}
+
+.site-footer-sitemap-contacts {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem 6rem;
+}
+
+.site-footer-sitemap-grid {
+  display: grid;
+  gap: 1rem 2rem;
+}
+
+.site-footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  line-height: 1.2;
+}
+
+.site-footer-contacts p {
+  margin-block-start: 0;
+  margin-block-end: 1rem;
+}
+
+.site-footer-contacts h1,
+.site-footer-contacts h2,
+.site-footer-contacts h3,
+.site-footer-contacts h4,
+.site-footer-contacts h5,
+.site-footer-contacts h6 {
+  margin-block-start: 0;
+  margin-block-end: 0.5rem;
+}
+
+.site-footer-legalese {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.wp-block-details {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.wp-block-details > summary {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.wp-block-details > summary::marker {
+  content: "";
+  display: none;
+}
+
+.wp-block-details > summary::after {
+  content: "";
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 11H24V13H13V24H11V13H0V11H11V0H13V11Z" fill="%23E93328"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin-left: 1rem;
+  width: 24px;
+  height: 24px;
+  color: var(--wp--preset--color--ferrous-red);
+  transition: rotate 0.2s ease;
+  transform-origin: 50% 50%;
+}
+
+.wp-block-details:open > summary::after {
+  rotate: 45deg;
+}
+
+.is-style-stats-home-hero {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  & > .wp-block-group {
+    border-left: 1px solid currentColor;
+    padding-left: clamp(1rem, 0.5rem + 2vw, 4rem);
+    &:first-child {
+      border-left: none;
+    }
+  }
+  & .is-style-big-number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+@media (width < 1120px) {
+  .is-style-stats-home-hero {
+    & > .wp-block-group:first-child {
+      border-left: 1px solid currentColor;
+    }
+  }
+}
+.fpt-form {
+  .indicates-required {
+    font-size: var(--wp--preset--font-size--x-small);
+  }
+  label {
+    display: block;
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .mc-field-group {
+    margin-block-end: 0.75rem;
+  }
+  input[type=text],
+  input[type=email],
+  input[type=tel] {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+  }
+  input[aria-required=true] {
+    &::after {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      content: "*";
+      color: var(--wp--preset--color--ferrous-red);
+    }
+  }
+  input[type=text]:user-valid,
+  input[type=email]:user-valid,
+  input[type=tel]:user-valid {
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+  }
+  input[type=text]:user-invalid,
+  input[type=email]:user-invalid,
+  input[type=tel]:user-invalid {
+    border-color: var(--wp--preset--color--ferrous-red);
+    border-style: dashed;
+    border-width: 2px;
+  }
+  input[type=submit] {
+    background-color: var(--wp--preset--color--ferrous-red);
+    border-radius: 0.25rem;
+    border-width: 0;
+    color: var(--wp--preset--color--white);
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--regular);
+    font-weight: 400;
+    line-height: inherit;
+    padding-top: 0.75rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    text-decoration: none;
+    &:hover {
+      background-color: color-mix(in srgb, var(--wp--preset--color--ferrous-red) 90%, black);
+      border-color: transparent;
+      color: var(--wp--preset--color--white);
+    }
+  }
+  select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: white;
+    border: 1px solid light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-radius: 0.25rem;
+  }
+  .response {
+    width: 100%;
+    font-size: var(--wp--preset--font-size--small);
+    color: inherit;
+  }
+  .response:has(.success) {
+    background-color: var(--wp--preset--bg-color--success);
+  }
+  .response:has(.info) {
+    background-color: var(--wp--preset--bg-color--info);
+  }
+  .response:has(.warning) {
+    background-color: var(--wp--preset--bg-color--warning);
+  }
+  .response:has(.error) {
+    color: white;
+    background-color: var(--wp--preset--bg-color--error);
+  }
+}
+
+.partner-form .partner-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  grid-template-areas: "business contact" "submit submit";
+  gap: 2rem 10rem;
+  .partner-fields-group.business-info {
+    grid-area: business;
+  }
+  .partner-fields-group.your-info {
+    grid-area: contact;
+  }
+  .partner-fields-group.submit-response {
+    grid-area: submit;
+    justify-items: end;
+  }
+}
+
+.dispatch-form .dispatch-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  grid-template-areas: "business contact" "submit submit";
+  gap: 2rem 10rem;
+  .dispatch-fields-group.business-info {
+    grid-area: business;
+  }
+  .dispatch-fields-group.your-info {
+    grid-area: contact;
+  }
+  .dispatch-fields-group.submit-response {
+    grid-area: submit;
+    justify-items: end;
+  }
+}
+
+/*
+ * Change the position of the more block on the front, by making it a block level element.
+ * https://github.com/WordPress/gutenberg/issues/65934
+*/
+.more-link {
+  display: block;
+}
+
+.main-navigation {
+  row-gap: 0.5rem !important;
+}
+
+html[data-scroll-off] {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* 
+ * Site Header Sticky Styles
+ */
+.admin-bar .site-header.is-stuck {
+  top: var(--wp-admin--admin-bar--height);
+}
+
+.site-header.is-stuck .icon-container {
+  color: var(--wp--preset--color--ferrous-blue);
+}
+
+.site-main > .entry-content:has(.page-hero) {
+  margin-top: calc(-1 * var(--site-header-height) + 1px);
+}
+
+.site-footer {
+  margin-block-start: 0 !important;
+}
+
+/*
+ * Custom text formats
+ */
+:any-link:has(.ferrous-no-underline-link) {
+  text-decoration: none !important;
+}
+
+:any-link:hover:has(.ferrous-no-underline-link) {
+  text-decoration: underline !important;
+}
+
+:any-link:focus-visible:has(.ferrous-no-underline-link) {
+  text-decoration: underline !important;
+  outline: 2px solid var(--wp--preset--color--primary);
+  outline-offset: 2px;
+}
+
+.ferrous-font-weight-xlight {
+  font-weight: 200 !important;
+}
+
+.z-raise {
+  z-index: 1000 !important;
+}
+
+.z-index-0 {
+  z-index: 0 !important;
+}
+
+h5 + *,
+h6 + * {
+  margin-block-start: 0.5rem !important;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,22 @@
+@charset "UTF-8"
+/* CSS Document */
+
+
+default {} 
+
+
+.ferrous-font-weight-xlight {
+  font-weight: 200;
+}
+
+:any-link:has(.ferrous-no-underline-link) {
+	text-decoration: none !important;
+}
+:any-link:hover:has(.ferrous-no-underline-link) {
+	text-decoration: underline !important;
+}
+:any-link:focus-visible:has(.ferrous-no-underline-link) {
+	text-decoration: underline !important;
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
