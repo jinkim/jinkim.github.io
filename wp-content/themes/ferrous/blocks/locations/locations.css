@@ -1,0 +1,298 @@
+.locations-block {
+    margin-block-start: 5ren;
+    margin-block-end: 5rem;
+    outline: none;
+}
+.locations-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 2rem 4rem;
+}
+
+.location {
+    --map-width: max(33%, 420px);
+    border: 1px solid #D3D3D3;
+    border-radius: 0.5rem;
+    padding: 1rem;
+
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.4;
+
+    display: grid;
+    gap: 0 2rem;
+    grid-template-columns: 1fr 1fr 4rem var(--map-width);
+    grid-template-areas: 
+        'title title distance map'
+        'description description description map'
+        'address address address map'
+        'phone hours hours map'
+        'fax hours hours map'
+        'features features features map';
+
+    h4 {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    &>*>*:first-child {
+        margin-top: 0;
+    }
+}
+
+
+.location-title {
+    grid-area: title;
+    margin-block-start: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.location-distance {
+    font-weight: 400;
+}
+.location-description {
+    grid-area: description;
+}
+.location-address {
+    grid-area: address;
+    & :any-link {
+        text-decoration: none;
+    }
+    & :hover {
+        text-decoration: underline;
+    }
+}
+.location-phone {
+    grid-area: phone;
+    & :any-link {
+        text-decoration: none;
+    }
+    & :hover {
+        text-decoration: underline;
+    }
+}
+.location-fax {
+    grid-area: fax;
+    & :any-link {
+        text-decoration: none;
+    }
+    & :hover {
+        text-decoration: underline;
+    }
+}
+.location-hours {
+    grid-area: hours;
+    width: min(100%, 350px);
+}
+.location-hours.span {
+    grid-column: 1/span 3;
+    grid-row: 4/span 2;
+}
+.location-hours-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & li {
+        display: flex;
+        gap: 0 1.5rem;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+}
+.location-hours-note {
+    font-size: var(--wp--preset--font-size--x-small);
+}
+.location-static-map {
+    grid-area: map;
+}
+.location-static-map-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+}
+.location-features-tags {
+    grid-area: features;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+.location-features-tags span {
+    display: inline-block;
+    line-height: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: var(--wp--preset--color--contrast, black);
+    font-size: var(--wp--preset--font-size--x-small);
+    font-weight: 400;
+}
+
+@media (width < 960px) {
+    .location {
+        grid-template-columns: 1fr 4rem;
+        grid-template-areas: 
+            'title distance'
+            'map map'
+            'description description'
+            'address address'
+            'phone phone'
+            'fax fax'
+            'hours hours'
+            'features features';
+    }
+    .location-static-map-image {
+        margin-block-end: 1rem;
+        width: min(100%, 480px);
+    }
+}
+
+.locations-search {
+    margin-block-end: 1rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .locations-address-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    input[type='search'] {
+        min-width: 15rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    label {
+        font-size: var(--wp--preset--font-size--x-small);
+        font-weight: 500;
+        line-height: 1.2;
+        text-transform: uppercase;
+        display: block;
+
+        &:has([type="checkbox"]) {
+            display: inline-block;
+            font-size: var(--wp--preset--font-size--small);
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: none;
+        }
+    }
+
+    .locations-geocode-button {
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    select {
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: white;
+        border: 1px solid #D3D3D3;
+        border-radius: 0.25rem;
+    }
+}
+.locations-features-filters {
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    label {
+        display: inline-block;
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+}
+
+.locations-submit-button {
+    background-color: var(--wp--preset--color--ferrous-red);
+    border-radius: 0.25rem;
+    border-width: 0;
+    color: var(--wp--preset--color--white);
+    font-size: var(--wp--preset--font-size--regular);
+    font-weight: 400;
+    line-height: inherit;
+    padding-top: 0.75rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    text-decoration: none;
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--wp--preset--color--ferrous-red) 90%, black);
+        border-color: transparent;
+        color: var(--wp--preset--color--white);
+    }
+}
+
+.pagination-controls {
+    margin-block: 2rem;
+    font-size: var(--wp--preset--font-size--small);
+    font-weight: 500;
+    line-height: 0;
+}
+.pagination-controls .page-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+.pagination-controls .page-number {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    border: 1px solid var(--wp--preset--color--ferrous-red);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.pagination-controls .page-number.current {
+    color: white;
+    border: 1px solid var(--wp--preset--color--ferrous-blue);
+    background-color: var(--wp--preset--color--ferrous-blue);
+    cursor: default;
+    pointer-events: none;
+}
+
+.locations-message-box {
+    padding: 0.5rem 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+    font-size: var(--wp--preset--font-size--x-small);
+    font-weight: 400;
+    border: 1px solid #D3D3D3;
+    border-radius: 0.25rem;
+
+    & > * {
+        margin: 0.5rem 0;
+    }
+}
+.locations-message-box:has(.success) {
+    background-color: var(--wp--preset--bg-color--success);
+}
+.locations-message-box:has(.notice) {
+    background-color: var(--wp--preset--bg-color--notice);
+}
+.locations-message-box:has(.warning) {
+    background-color: var(--wp--preset--bg-color--warning);
+}
+.locations-message-box:has(.error) {
+    color: white;
+    background-color: var(--wp--preset--bg-color--error);
+}
